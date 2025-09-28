@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>$title$</title>
+    $for(css)$
+    <link rel="stylesheet" href="$css$">$endfor$
+    <link href="./interface.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    $body$
+    <!-- Make sure paged.js loads first -->
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    <script>
+(function () {
+  function install() {
+    if (!window.Paged || !Paged.registerHandlers) return;
+
+    Paged.registerHandlers(class ContinuationHeader extends Paged.Handler {
+      constructor(chunker, polisher, caller) {
+        super(chunker, polisher, caller);
+        this.currentTitle = "";
+      }
+
+      // Grab the first title up front (source DOM, not page fragments)
+      beforeParsed(doc) {
+        const firstH1 = doc.querySelector('section.level1 h1');
+        this.currentTitle = firstH1 ? (firstH1.textContent || '').trim() : '';
+      }
+
+      // Called for each page while it's being built
+      beforePageLayout(pageElement, page, breakToken) {
+        const root    = pageElement.element || pageElement;
+        if (!root || root.classList.contains('pagedjs_blank_page')) return;
+
+        const content = root.querySelector('.pagedjs_page_content') || root;
+
+        // Determine "first page" and an explicit break start
+        const isFirstPage  = !root.previousElementSibling ||
+                             (root.dataset && root.dataset.pageNumber === '1');
+        const hasBreakBefore = root.dataset &&
+                               root.dataset.breakBefore &&
+                               root.dataset.breakBefore !== 'auto';
+
+        let startsSection = isFirstPage || hasBreakBefore;
+
+        // If we have a breakToken, try to resolve the section title from the SOURCE node
+        if (breakToken && breakToken.node) {
+          const sec = breakToken.node.closest && breakToken.node.closest('section.level1');
+          if (sec) {
+            const h1 = sec.querySelector('h1');
+            const t  = h1 ? (h1.textContent || '').trim() : '';
+            if (t) {
+              if (t !== this.currentTitle) startsSection = true;
+              this.currentTitle = t;
+            }
+          }
+        }
+
+        const title = this.currentTitle;
+        if (!title) return;
+
+        const marker = content.ownerDocument.createElement('span');
+        marker.className = 'header-marker';     // CSS: position: running(header)
+        marker.setAttribute('aria-hidden', 'true');
+        marker.textContent = title + (startsSection ? '' : ' (cont.)');
+        content.insertBefore(marker, content.firstChild);
+      }
+    });
+  }
+
+  // Register now and again when paged is ready (covers load order)
+  install();
+  document.addEventListener('pagedjs:ready', install, { once: true });
+})();
+</script>
+
+
+</body>
+
+</html>
