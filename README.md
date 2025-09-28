@@ -18,7 +18,7 @@ Go to the root folder of your Obsidian vault, navigate to the folder `.obsidian`
 
 - in Obsidian, go to the settings page and choose "Export Settings" under "Community Plugins". This let's you configure the Enhancing Export Plugin.
 - add a template
-  - choose "Markdown"
+  - choose "Html"
   - give it a name (e.g. "Index Cards")
 - set the arguments to something like this:
 
