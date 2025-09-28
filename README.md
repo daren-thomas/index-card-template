@@ -23,7 +23,7 @@ Go to the root folder of your Obsidian vault, navigate to the folder `.obsidian`
 - set the arguments to something like this:
 
 ```
--f ${fromFormat} --resource-path="${vaultDir}/.obsidian/two-column-index-cards}" --resource-path="${attachmentFolderPath}" --embed-resources --standalone --metadata title="${currentFileName}" -s -o "${outputPath}" --css="two-column-index-cards.css" --template="two-column-index-cards.html" --section-divs --lua-filter="${vaultDir}/.obsidian/two-column-index-cards/statblock.lua" -t html
+-f ${fromFormat} --resource-path="${vaultDir}/.obsidian/two-column-index-cards" --resource-path="${attachmentFolderPath}" --embed-resources --standalone --metadata title="${currentFileName}" -s -o "${outputPath}" --css="two-column-index-cards.css" --template="two-column-index-cards.html" --section-divs --lua-filter="${vaultDir}/.obsidian/two-column-index-cards/statblock.lua" -t html
 ```
 
 These are `pandoc` arguments that will be fed directly to `pandoc`. You can look up their meaning in the [pandoc manual](https://pandoc.org/MANUAL.html). What the Enhancing Export plugin does is replace certain variables inside that string with information provided by Obsidian. You can find out the list of variables here: https://github.com/mokeyish/obsidian-enhancing-export?tab=readme-ov-file#variables
