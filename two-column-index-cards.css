@@ -11,9 +11,9 @@
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-size: 2em;
         font-weight: bold;
-        letter-spacing: 0.1em;
         text-transform: uppercase !important;
-        border-bottom: 1px solid black;
+        color: white;
+        background-color: black;
     }
 }
 
