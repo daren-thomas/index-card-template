@@ -29,6 +29,20 @@ Go to the root folder of your Obsidian vault, navigate to the folder `.obsidian`
 These are `pandoc` arguments that will be fed directly to `pandoc`. You can look up their meaning in the [pandoc manual](https://pandoc.org/MANUAL.html). What the Enhancing Export plugin does is replace certain variables inside that string with information provided by Obsidian. You can find out the list of variables here: https://github.com/mokeyish/obsidian-enhancing-export?tab=readme-ov-file#variables
 
 
+## Alternative Templates
+
+I use the following arguments for a session notes export:
+
+```
+-f ${fromFormat} --resource-path="${vaultDir}/.obsidian/two-column-index-cards" --resource-path="${attachmentFolderPath}" --embed-resources --standalone --metadata title="${currentFileName}" -s -o "${outputPath}" --css="session-notes.css" --template="session-notes.html" --section-divs --lua-filter="${vaultDir}/.obsidian/two-column-index-cards/statblock.lua" -t html
+```
+
+And I use this to print a sheet of monsters:
+
+```
+-f ${fromFormat} --resource-path="${vaultDir}/.obsidian/two-column-index-cards" --resource-path="${attachmentFolderPath}" --embed-resources --standalone --metadata title="${currentFileName}" -s -o "${outputPath}" --css="monsters.css" --template="monsters.html" --section-divs --lua-filter="${vaultDir}/.obsidian/two-column-index-cards/statblock.lua" -t html
+```
+
 
 ## License information
 
