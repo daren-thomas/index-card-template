@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+bower_components/
+.pnp.cjs
+.pnp.loader.mjs
+
+# Build output
+dist/
+build/
+public/
+tmp/
+temp/
+
+# Tooling caches
+.cache/
+.parcel-cache/
+.sass-cache/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Misc
+*.swp
+*~
+
+# personal script to install the templates to my vault
+install-templates.sh

@@ -8,24 +8,32 @@
 }
 
 section.level1 {
-   
-    /*set column gap*/
     /* font-family: 'Scaly Sans', sans-serif; */
     /* remove comment tags to change body font, this is nice for index cards */
     line-height: 1.3;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 8pt;
 
+    padding-top: 1em !important;
+    padding-bottom: 1em;
+
     column-count: 2;
     column-gap: 2em;
+
     height: auto;
-    column-fill: auto;
-    padding-top: 1em !important;
+
+    break-inside: avoid;
 }
 
-ul, ol {
-  margin-left: 1.2em;
-  padding-left: 0;
+ul,
+ol {
+    padding-inline-start: 0em;
+    list-style-position: inside;
+    list-style: none;
+}
+
+h1 {
+    column-span: all;
 }
 
 h2,
